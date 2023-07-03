@@ -4,7 +4,7 @@ from Functions_elvui_update import *
 
 
 
-base_webpage_url = "https://www.tukui.org/download.php?ui=elvui"
+base_webpage_url = "https://api.tukui.org/v1/addon/elvui"
 file_path = str.replace(get_wow_classic_install_location(), """\"""", """\\""""") + "Interface\\AddOns\\ElvUI\\ElvUI_Wrath.toc"
 file_path_addons= file_path[0:53]
 version_from_url = try_to_get_addon_version_from_url(base_webpage_url)
