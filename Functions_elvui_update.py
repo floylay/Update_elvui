@@ -2,21 +2,23 @@
 import winreg
 from zipfile import ZipFile
 from io import BytesIO
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 
 ##//Made by ketis//##
 
 def try_to_get_addon_version_from_url(url):
     addon_url = url
+    page_req = Request(url=addon_url,    headers={'User-Agent': 'Mozilla/5.0'}) 
     try:
-        page = urlopen(addon_url)
+        page = urlopen(page_req)
         html_bytes = page.read()
         html = html_bytes.decode("utf-8")
-        version_raw = html[16661:16718]
-        version = float(version_raw[51:56])
+        version_raw = html.find("""version":""")
+        version = html[version_raw+10:version_raw+15]
+        #version = float(version_raw[51:56])
         
 
-        return version
+        return float(version)
     
     except Exception as e:
         print(e + " contact Floy")
